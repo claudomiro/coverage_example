@@ -1,56 +1,71 @@
 package org.claudomiro.clean_code.world_cup;
 
 
-public enum  Country {
-    UY("Uruguay", Group.A, Phase.QUARTER_FINALS),
-    RU("Russian Federation", Group.A, Phase.QUARTER_FINALS),
-    SA("Saudi Arabia", Group.A, Phase.ROUND_OF_16),
-    EG("Egypt", Group.A,null),
+import java.util.Comparator;
+import java.util.Optional;
 
-    ES("Spain", Group.B, Phase.ROUND_OF_16),
-    PT("Portugal", Group.B, Phase.ROUND_OF_16),
-    IR("Iran", Group.B, Phase.ROUND_OF_16),
-    MA(" Morocco", Group.B, Phase.ROUND_OF_16),
+import static org.claudomiro.clean_code.world_cup.Group.*;
+import static org.claudomiro.clean_code.world_cup.Phase.*;
 
-    FR("France", Group.C, Phase.CHAMPION),
-    DK(" Denmark", Group.C, Phase.ROUND_OF_16),
-    PE(" Peru", Group.C, Phase.ROUND_OF_16),
-    AU(" Australia", Group.C, Phase.ROUND_OF_16),
+public enum  Country implements Comparator<Country>{
+    UY("Uruguay", A, QUARTER_FINALS),
+    RU("Russian Federation", A, QUARTER_FINALS),
+    SA("Saudi Arabia", A, ROUND_OF_16),
+    EG("Egypt", A, ROUND_OF_16),
 
-    HR(" Croatia", Group.D, Phase.FINALS),
-    AR("Argentina", Group.D, Phase.ROUND_OF_16),
-    NG(" Nigeria", Group.D, Phase.ROUND_OF_16),
-    IS(" Iceland", Group.D, Phase.ROUND_OF_16),
+    ES("Spain", B, ROUND_OF_16),
+    PT("Portugal", B, ROUND_OF_16),
+    IR("Iran", B, ROUND_OF_16),
+    MA("Morocco", B, ROUND_OF_16),
 
-    BR("Brazil", Group.E, Phase.QUARTER_FINALS),
-    CH("  Switzerland", Group.E, Phase.ROUND_OF_16),
-    RS(" Serbia", Group.E, Phase.ROUND_OF_16),
-    CR(" Costa Rica", Group.E, Phase.ROUND_OF_16),
+    FR("France", C),
+    DK("Denmark", C, ROUND_OF_16),
+    PE("Peru", C, ROUND_OF_16),
+    AU("Australia", C, ROUND_OF_16),
 
-    SE(" Sweden", Group.F, Phase.QUARTER_FINALS),
-    MX(" Mexico", Group.F, Phase.ROUND_OF_16),
-    KR(" South Korea ", Group.F, Phase.ROUND_OF_16),
-    DE("Germany", Group.F, Phase.ROUND_OF_16),
+    HR("Croatia", D, FINALS),
+    AR("Argentina", D, ROUND_OF_16),
+    NG("Nigeria", D, ROUND_OF_16),
+    IS("Iceland", D, ROUND_OF_16),
 
-    BE(" Belgium", Group.G, Phase.SEMI_FINALS),
-    GB_ENG(" England ", Group.G, Phase.FINALS),
-    PA("Panama", Group.G, Phase.ROUND_OF_16),
-    TN("Tunisia", Group.G, Phase.ROUND_OF_16),
+    BR("Brazil", E, QUARTER_FINALS),
+    CH("Switzerland", E, ROUND_OF_16),
+    RS("Serbia", E, ROUND_OF_16),
+    CR("Costa Rica", E, ROUND_OF_16),
 
-    CO("Colombia", Group.H, Phase.ROUND_OF_16),
-    JP(" Japan", Group.H, Phase.ROUND_OF_16),
-    SN(" Senegal", Group.H, Phase.ROUND_OF_16),
-    PL(" Poland", Group.H, Phase.ROUND_OF_16);
+    SE("Sweden", F, QUARTER_FINALS),
+    MX("Mexico", F, ROUND_OF_16),
+    KR("South Korea ", F, ROUND_OF_16),
+    DE("Germany", F, ROUND_OF_16),
+
+    BE("Belgium", G, SEMI_FINALS),
+    GB_ENG("England ", G, FINALS),
+    PA("Panama", G, ROUND_OF_16),
+    TN("Tunisia", G, ROUND_OF_16),
+
+    CO("Colombia", H, ROUND_OF_16),
+    JP("Japan", H, ROUND_OF_16),
+    SN("Senegal", H, ROUND_OF_16),
+    PL("Poland", H, ROUND_OF_16);
+
+    public static final Country CHAMPION = FR;
 
     private final String name;
     private final Group group;
-    private final Phase finalPhase;
+    private final Optional<Phase> eliminationPhase;
 
-    private Country(String name, Group group, Phase finalPhase)
+    Country(String name, Group group, Phase eliminationPhase) 
     {
         this.name = name;
         this.group = group;
-        this.finalPhase = finalPhase;
+        this.eliminationPhase = Optional.of(eliminationPhase);
+    }
+
+    Country(String name, Group group) 
+    {
+        this.name = name;
+        this.group = group;
+        this.eliminationPhase = Optional.empty();
     }
 
     public String getName() {
@@ -61,8 +76,16 @@ public enum  Country {
         return group;
     }
 
-    public Phase getFinalPhase() {
-        return finalPhase;
+    public Optional<Phase> getEliminationPhase() {
+        return eliminationPhase;
     }
 
+    @Override
+    public int compare(Country c1, Country c2) {
+        return c1.getName().compareTo(c2.getName());
+    }
+
+    public boolean isChampion() {
+        return this.equals(CHAMPION);
+    }
 }
