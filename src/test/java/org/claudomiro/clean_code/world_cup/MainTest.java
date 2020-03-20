@@ -1,16 +1,15 @@
 package org.claudomiro.clean_code.world_cup;
 
-import org.junit.jupiter.api.*;
-
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static org.claudomiro.clean_code.world_cup.Group.*;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.*;
-
 import static org.claudomiro.clean_code.world_cup.Country.*;
-
+import static org.claudomiro.clean_code.world_cup.Group.*;
+import static org.hamcrest.MatcherAssert.*;
+import static org.hamcrest.Matchers.*;
 
 public class MainTest {
 
@@ -24,7 +23,6 @@ public class MainTest {
     @Test
     public void whenValidCountryNameReturnPositionOfElination()
     {
-//        assertThat(main.position("France"), emptyOptional());
         assertThat(Phase.QUARTER_FINALS, equalTo(wc2018.elimination("Brazil")));
         assertThat(Phase.ROUND_OF_16, equalTo(wc2018.elimination("Germany")));
     }
