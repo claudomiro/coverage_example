@@ -28,6 +28,12 @@ public class Main
                 .collect(Collectors.toList());
     }
 
+    public List<Country> byEliminationPhase(Phase eliminationPhase) {
+        return getCountryStream()
+                .filter(country -> eliminationPhase.equals(country.getEliminationPhase()))
+                .collect(Collectors.toList());
+    }
+
     public List<Country> allOrderedByCountryName()
     {
         return getCountryStream()
@@ -36,7 +42,7 @@ public class Main
 
     public List<String> allNames() {
         return getCountryStream()
-                .map(c -> c.getName())
+                .map(Country::getName)
                 .collect(Collectors.toList());
     }
 

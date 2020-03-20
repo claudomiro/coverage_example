@@ -38,7 +38,7 @@ public enum  Country implements Comparator<Country>{
     KR("South Korea ", F, ROUND_OF_16),
     DE("Germany", F, ROUND_OF_16),
 
-    BE("Belgium", G, SEMI_FINALS),
+    BE("Belgium", G, FINALS),
     GB_ENG("England ", G, FINALS),
     PA("Panama", G, ROUND_OF_16),
     TN("Tunisia", G, ROUND_OF_16),

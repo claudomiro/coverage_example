@@ -48,6 +48,12 @@ public class MainTest {
     }
 
     @Test
+    public void whenEliinationPahseReturnCoutryList()
+    {
+        assertThat(main.byEliminationPhase(Phase.FINALS), contains(BE, HR, GB_ENG));
+    }
+
+    @Test
     public void returnAllCountries()
     {
         final List<Country> all = main.allOrderedByCountryName();
