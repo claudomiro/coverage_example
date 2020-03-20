@@ -52,20 +52,18 @@ public enum  Country implements Comparator<Country>{
 
     private final String name;
     private final Group group;
-    private final Optional<Phase> eliminationPhase;
+    private final Phase eliminationPhase;
 
     Country(String name, Group group, Phase eliminationPhase) 
     {
         this.name = name;
         this.group = group;
-        this.eliminationPhase = Optional.of(eliminationPhase);
+        this.eliminationPhase = eliminationPhase;
     }
 
     Country(String name, Group group) 
     {
-        this.name = name;
-        this.group = group;
-        this.eliminationPhase = Optional.empty();
+        this(name, group, NOT_ELIMINATED);
     }
 
     public String getName() {
@@ -76,7 +74,7 @@ public enum  Country implements Comparator<Country>{
         return group;
     }
 
-    public Optional<Phase> getEliminationPhase() {
+    public Phase getEliminationPhase() {
         return eliminationPhase;
     }
 

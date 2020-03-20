@@ -42,15 +42,15 @@ public class CountryTest {
 
     @Test
     public void whenValidCountryReturnEliminationPosition() {
-        assertThat(Country.FR.getEliminationPhase(), equalTo(Optional.empty()));
-        assertThat(Country.GB_ENG.getEliminationPhase().orElse(null), equalTo(FINALS));
-        assertThat(Country.UY.getEliminationPhase().orElse(null), equalTo(QUARTER_FINALS));
-        assertThat(Country.BR.getEliminationPhase().orElse(null), equalTo(QUARTER_FINALS));
-        assertThat(Country.ES.getEliminationPhase().orElse(null), equalTo(ROUND_OF_16));
-        assertThat(Country.AR.getEliminationPhase().orElse(null), equalTo(ROUND_OF_16));
-        assertThat(Country.DE.getEliminationPhase().orElse(null), equalTo(ROUND_OF_16));
-        assertThat(Country.PA.getEliminationPhase().orElse(null), equalTo(ROUND_OF_16));
-        assertThat(Country.CO.getEliminationPhase().orElse(null), equalTo(ROUND_OF_16));
+        assertThat(Country.FR.getEliminationPhase(), equalTo(NOT_ELIMINATED));
+        assertThat(Country.GB_ENG.getEliminationPhase(), equalTo(FINALS));
+        assertThat(Country.UY.getEliminationPhase(), equalTo(QUARTER_FINALS));
+        assertThat(Country.BR.getEliminationPhase(), equalTo(QUARTER_FINALS));
+        assertThat(Country.ES.getEliminationPhase(), equalTo(ROUND_OF_16));
+        assertThat(Country.AR.getEliminationPhase(), equalTo(ROUND_OF_16));
+        assertThat(Country.DE.getEliminationPhase(), equalTo(ROUND_OF_16));
+        assertThat(Country.PA.getEliminationPhase(), equalTo(ROUND_OF_16));
+        assertThat(Country.CO.getEliminationPhase(), equalTo(ROUND_OF_16));
     }
 
     @Test

@@ -28,8 +28,8 @@ public class MainTest {
     public void whenValidCountryNameReturnPositionOfElination()
     {
 //        assertThat(main.position("France"), emptyOptional());
-        assertThat(Phase.QUARTER_FINALS, equalTo(main.elimination("Brazil").orElse(null)));
-        assertThat(Phase.ROUND_OF_16, equalTo(main.elimination("Germany").orElse(null)));
+        assertThat(Phase.QUARTER_FINALS, equalTo(main.elimination("Brazil")));
+        assertThat(Phase.ROUND_OF_16, equalTo(main.elimination("Germany")));
     }
 
     @Test

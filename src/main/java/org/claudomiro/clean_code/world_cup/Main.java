@@ -11,7 +11,7 @@ import static org.claudomiro.clean_code.world_cup.Country.CH;
 
 public class Main
 {
-    public Optional<Phase> elimination(String countryName)
+    public Phase elimination(String countryName)
     {
         return Arrays.stream(Country.values())
                 .filter(country -> country.getName().equals(countryName))
